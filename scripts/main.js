@@ -1,33 +1,27 @@
 // Slider Start
 function slider(name) {
-  const sliderItem = document.querySelectorAll(
-    `.slider-${name}`
-  );
-  console.log(sliderItem)
-  const sliderBtn = document.querySelectorAll(
-    `.slider-btn-${name}`
-  );
+  const sliderItem = document.querySelectorAll(`.slider-${name}`);
+  console.log(sliderItem);
+  const sliderBtn = document.querySelectorAll(`.slider-btn-${name}`);
 
   let sAmount = 300;
   let s = [0];
 
   sliderItem.forEach((e, i) => {
-    if(i != 0) {
-      s.push(0+(sAmount*i))
+    if (i != 0) {
+      s.push(0 + sAmount * i);
     }
     e.style.left = `${s[i]}px`;
     console.log(s);
   });
-  console.log(s + "end")
+  console.log(s + "end");
   sliderBtn.forEach((e, j) => {
     e.addEventListener("click", () => {
       if (j == 0) {
         for (let i = 0; i < sliderItem.length; i++) {
           let newLeft = parseInt(sliderItem[i].style.left) + 300;
           if (i == 0 && newLeft == 300) {
-            let lll = document.querySelectorAll(
-              `.slider-${name}`
-            );
+            let lll = document.querySelectorAll(`.slider-${name}`);
 
             lll.forEach((e) => {
               let newN = parseInt(e.style.left);
@@ -43,10 +37,8 @@ function slider(name) {
       } else if (j == 1) {
         for (let i = 0; i < sliderItem.length; i++) {
           let newLeft = parseInt(sliderItem[i].style.left) - 300;
-          if (i == s.length-1 && newLeft == -300) {
-            let lll = document.querySelectorAll(
-              `.slider-${name}`
-            );
+          if (i == s.length - 1 && newLeft == -300) {
+            let lll = document.querySelectorAll(`.slider-${name}`);
 
             lll.forEach((e, i) => {
               e.style.left = `${s[i]}px`;
@@ -99,3 +91,25 @@ sliderOverlay.addEventListener("click", () => {
 });
 
 // Slider End
+
+// Burger Start
+
+let navList = document.querySelector(".nav__list");
+let burger = document.querySelector(".burger__icon");
+let navLink = document.querySelectorAll(".nav__item-link");
+
+burger.addEventListener("click", () => {
+  if (navList.style.top == "-100vh") {
+    navList.style.top = "0vh";
+  } else if (navList.style.top == "0vh") {
+    navList.style.top = "-100vh";
+  }
+});
+
+navLink.forEach((e) => {
+  e.addEventListener("click", () => {
+    navList.style.top = "-100vh";
+  });
+});
+
+// Burger End
